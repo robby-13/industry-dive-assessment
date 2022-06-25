@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.template import loader
 from django.http import HttpResponse
 
-from advertising import get_ad
+from advertising.models import Advertisement
 from news.models import NewsPost
 from news.helpers import parse_search_terms
 from taxonomy.models import Topic
@@ -34,9 +34,10 @@ def front_page(request):
 def newspost_detail(request, newspost_id):
     template = loader.get_template('news/newspost.html')
     newspost = NewsPost.objects.get(pk=newspost_id)
+    ad = Advertisement.objects.get(pk=newspost.ad_id) # create ad variable to access Advertisement object
     context = {
         'newspost': newspost,
-        'ad': get_ad()
+        'ad': ad
     }
     return HttpResponse(template.render(context, request))
 

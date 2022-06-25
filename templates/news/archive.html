@@ -16,7 +16,7 @@
 				{% for topic in topics %}
 					<li><input type="checkbox" name="topics_{{topic.pk}}" id="id_topics_{{topic.pk}}" value="{{topic.id}}" 
 						{% if topic in selected_topics %}checked=checked{% endif %}
-						> {{topic.display_name}}</li>
+						/> {{topic.display_name}}</li>
 				{% endfor %}
 				</ul>
 			</div>

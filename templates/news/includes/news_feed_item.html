@@ -1,11 +1,15 @@
 <li data-newspost-id="{{feed_item.pk}}" data-feed-placement="{{forloop.counter}}">
-	<span class="label label--soft">
-		{{feed_item.publish_date}}
-	</span>
+	<!--the for loop is responsible for rendering all of the red tags,
+	at the end of the for loop you'd just want to tag along the date.
+	Hence, move the span class 'label label--soft' to inside the if statement
+	and after the for loop ends-->
 	{% if format == "detailed" %}
 		{% for topic in feed_item.topics.all %}
 			<div class="label label--tag">{{topic.display_name}}</div>
 		{% endfor %}
+		<span class="label label--soft">
+			{{feed_item.publish_date}}
+		</span>
 	{% endif %}
 	<div class="feed-link">
 		<a href="{{ feed_item.url }}">{{ feed_item.title }}</a>

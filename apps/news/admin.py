@@ -2,10 +2,12 @@ from django import forms
 from django.contrib import admin
 from news.models import NewsPost
 
-
+options = [(False, 'False'), (True, 'True')]
 class NewsPostForm(forms.ModelForm):
     model = NewsPost
-    fields = '__all__'
+    is_cover_story = forms.ChoiceField(choices=options, widget=forms.RadioSelect)
+    fields = ['title', 'source_divesite', 'is_cover_story', 'active']
+
 
 
 class NewsPostAdmin(admin.ModelAdmin):
