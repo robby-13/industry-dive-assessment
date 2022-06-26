@@ -5,6 +5,7 @@ function App() {
   const [archives, setArchives] = useState([]) // store the archives data in a state
   const [search, setSearch] = useState('') // store the input in the search field
   const [filteredArchives, setFilteredArchives] = useState([]) // filtered Archive data results
+  const [topic, setTopic] = useState('') // to display for the Topics in the search results
 
   const local_host = 'http://127.0.0.1:8000/'
   const api = local_host + 'api/v1/news/'
@@ -17,6 +18,7 @@ function App() {
   }, [])
   
   // Based on the search value, filter the archives and display all matching results
+  
   const handleChange = (event) => {
     event.preventDefault()
     setSearch(event.target.value)
@@ -24,12 +26,14 @@ function App() {
     if (search !== '') {
       const filteredArchives = copy.filter(match => match.title.toLowerCase().includes(search))
       setFilteredArchives(filteredArchives)
+      setTopic(filteredArchives[0].topics[0].display_name)
+      
     }
     else {
       setFilteredArchives(archives)
     }
   }
-
+  
   const handleSubmit = (event) => {
     event.preventDefault()
   }
@@ -80,9 +84,12 @@ function App() {
     <div className="App">
       <form>
         <input type="text" onChange={(event) => handleChange(event)}></input>
-        <button type="search" onClickt={(event) => handleSubmit(event)}>search</button>
+        <button type="search" onClick={(event) => handleSubmit(event)}>search</button>
       </form>
-      
+      <div className="top-bar">
+        <h3>Search term: {search}</h3>
+        <h3>Topics: {topic}</h3>
+      </div>
       <ul>
         {display}
       </ul>
