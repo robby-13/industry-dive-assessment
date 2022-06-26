@@ -29,7 +29,7 @@ class NewsPost(models.Model):
     divesite = models.ForeignKey(DiveSite, null=True, on_delete=models.SET_NULL)
     topics = models.ManyToManyField(Topic)
     active = models.BooleanField(default=True)
-    ad = models.ForeignKey(Advertisement, on_delete=models.CASCADE, default=1, blank=True, null=True) # every news post has a reference to an advertisement instance
+    ad = models.ForeignKey(Advertisement, on_delete=models.DO_NOTHING, default=1) # every news post has a reference to an advertisement instance
 
     def __str__(self):
         return '<{}> {}'.format(self.divesite.url_name, self.title)

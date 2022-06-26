@@ -34,10 +34,10 @@ def front_page(request):
 def newspost_detail(request, newspost_id):
     template = loader.get_template('news/newspost.html')
     newspost = NewsPost.objects.get(pk=newspost_id)
-    ad = Advertisement.objects.get(pk=newspost.ad_id) # create ad variable to access Advertisement object
+    ad = Advertisement.objects.get(pk=newspost.ad_id) # create ad variable to access the specific Advertisement object
     context = {
         'newspost': newspost,
-        'ad': ad
+        'ad': ad # replace get_ad() random function with the ad variable 
     }
     return HttpResponse(template.render(context, request))
 
