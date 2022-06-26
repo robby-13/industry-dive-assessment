@@ -29,7 +29,11 @@ class NewsPost(models.Model):
     divesite = models.ForeignKey(DiveSite, null=True, on_delete=models.SET_NULL)
     topics = models.ManyToManyField(Topic)
     active = models.BooleanField(default=True)
-    ad = models.ForeignKey(Advertisement, on_delete=models.DO_NOTHING, default=1) # every news post has a reference to an advertisement instance
+    ad = models.ForeignKey(Advertisement, on_delete=models.DO_NOTHING, default=1) 
+    # every news post has a reference to an advertisement instance
+    # implemented DO_NOTHING to avoid deleting everything (ads + news posts) altogether.
+    # default ad for all existing and news posts to be created in the future, are set to
+    # the Industry Dive ad which has a key value of 1.
 
     def __str__(self):
         return '<{}> {}'.format(self.divesite.url_name, self.title)

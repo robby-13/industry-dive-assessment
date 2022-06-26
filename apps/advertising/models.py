@@ -9,7 +9,3 @@ class Advertisement(models.Model):
     logo = models.ImageField(upload_to='static/spoonsers/')
     ad_link = models.URLField()
     ad_text = models.TextField(max_length=1000)
-
-    # def __str__(self):
-    #     return '{}'.format(self.name) # displays the company name on the Admin side rather than 'Advertisement Object(X)'
-    
