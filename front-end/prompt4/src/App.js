@@ -39,7 +39,7 @@ function App() {
   }
 
   // When working with the API data, I noticed that the text in the teasers field still had HTML
-  // paragraph tags. They got annoying after a while, so I wrote a function to get rid of them, 
+  // paragraph tags. They got annoying after a while, so I wrote a function to get rid of them 
   // and for a couple stragglers that had different HTML tags leading the string.
   const removeParagraphTags = () => {
     const copy = [...archives]
@@ -52,7 +52,7 @@ function App() {
       if(copy[i].pk === 15) {
         copy[i].teaser = copy[i].teaser.slice(12).replace('>', '')
       }
-
+      
     }
   }
   removeParagraphTags()
@@ -63,11 +63,11 @@ function App() {
       return(
         <div className="archive-post">
           <ul>
-            <li key={i.publish_date}>{i.publish_date}</li>
+            <li className="date" key={i.publish_date}>{i.publish_date}</li>
             {i.topics.map((topic, index) => {
               return(
-                <div>
-                  <li key={index + topic.pk}>{topic.display_name}</li>
+                <div className="display">
+                  <li className="display_name" key={index + topic.pk}>{topic.display_name}</li>
                 </div>
               )
             })}
@@ -82,13 +82,14 @@ function App() {
 
   return (
     <div className="App">
-      <form>
-        <input type="text" onChange={(event) => handleChange(event)}></input>
-        <button type="search" onClick={(event) => handleSubmit(event)}>search</button>
+      <form className="search-field">
+        <input className="search-bar" type="text" onChange={(event) => handleChange(event)}></input>
+        <button className="search-button" type="search" onClick={(event) => handleSubmit(event)}>search</button>
       </form>
+      <h3 className="search-title">SEARCH RESULTS</h3>
       <div className="top-bar">
-        <h3>Search term: {search}</h3>
-        <h3>Topics: {topic}</h3>
+        <h3 className="search">Search term: "{search}"</h3>
+        <h3 className="topics">Topics: {topic}</h3>
       </div>
       <ul>
         {display}
