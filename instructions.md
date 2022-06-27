@@ -1,5 +1,7 @@
 # Industry Dive Technical Assessment by Robby Singh
 
+For the entirety of the project, I worked inside a Python Virtual Environment to maintain proper Python practices and conventions. 
+
 ## Prompt 1
 After getting out of my own head, prompt 1 was rather simple. I was thrown off at first seeing the mix of Python and Django code to make for loops and if statements. But the logic was clear,what was disrupting the archives news posts and creating this bug was that the date variable (span class label label--soft) was placed before the if statement on line 5 in the original repo. Because of this we saw that overlap and the date for that particular article was being stamped next to the teaser for the previous post. My quick fix was moving the date variable from before the if statement, to inside it and after the for loop. 
 
